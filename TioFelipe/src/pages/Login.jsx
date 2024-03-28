@@ -5,20 +5,11 @@ function Login(){
     return (
         <section>
             <h1>Login</h1>
-            <div>
-                <div>
-                    <label htmlFor="">Correo</label>
-                    <input type="mail" />
-                </div>
-                <div>
-                    <label htmlFor="">Password</label>
-                    <input type="password" />
-                </div>
-                <div>
-                    <span>Mantener logeado</span>
-                    <input type="submit" />
-                </div>
-            </div>
+            <form action="http://localhost:5000/sendLogin" method='post'>
+                <input type="email" placeholder='email' name="email"/>
+                <input type="pass" placeholder='contraseña' name="password"/>
+                <button type='submit'>Enviar</button>
+            </form>
         </section>
     )
 }
