@@ -1,9 +1,12 @@
 {
   "name": "tiofelipe",
   "private": true,
+  "homepage": "hhtp://gudinojoaquin.github.io/TioFelipe",
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run dev",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
@@ -13,6 +16,7 @@
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "gh-pages": "^6.1.1",
     "mysql2": "^3.9.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
