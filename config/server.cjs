@@ -9,7 +9,7 @@ const conexion = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'tiofelipe'
+    database: 'LapizYPapel'
 })
 
 app.use(cors())
@@ -22,10 +22,10 @@ app.post('/sendRegister', (req, res) => {
     const pass = req.body.password;
 
     // Usar consultas parametrizadas para evitar la inyección de SQL
-    const query = 'INSERT INTO reg_usuarios(user_name, user_surname, user_email, user_pass) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO reg_usuarios(user_email, user_pass) VALUES (?, ?)';
     
     // Pasar los valores como un array al método query
-    conexion.query(query, [nombre, apellido, email, pass], (err, results) => {
+    conexion.query(query, [email, pass], (err, results) => {
         if(err) {
             console.log('Error al insertar los datos:', err);
             res.status(500).send('Error interno del servidor');
@@ -55,6 +55,37 @@ app.post('/sendLogin', (req, res) => {
         }
     });
 });
+
+app.post('/sendPedido', (req, res) => {
+    const nombre = req.body.nombre
+    const apellido = req.body.apellido
+    const email = req.body.email
+    const pdfLink = req.body.pdfLink
+
+    const query = 'INSERT INTO reg_productos(user_name, user_surname, user_email, product_link) VALUES (?, ?, ?, ?)'
+
+    conexion.query(query, [nombre, apellido, email, pdfLink], (err, results) => {
+        if(err){
+            console.log(`Error al insertar los datos ${err}`)
+            res.status(500).send('Error interno del servidor')
+            return
+        }
+        res.redirect('http://localhost:5173/')
+    })
+})
+
+app.get('/pedidos/encargos', (req, res) => {
+    const query = 'SELECT * FROM reg_productos'
+
+    conexion.query(query, (err, results) => {
+        if(err){
+            console.log('Error al recuperar los datos de productos:', err)
+            res.status(500).send('Error interno del servidor')
+            return
+        }
+        res.json(results)
+    })
+})
 
 
 app.listen(port, () => {
