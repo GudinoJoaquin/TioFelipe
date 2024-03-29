@@ -48,6 +48,8 @@ app.post('/sendLogin', (req, res) => {
             return;
         }
 
+        
+
         if (results.length > 0) {
             res.redirect('http://localhost:5173/')
         } else {

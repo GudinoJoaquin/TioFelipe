@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import Encargo from '../components/Encargo';
 
 function Encargos() {
     const [encargos, setEncargos] = useState([]);
@@ -19,12 +20,7 @@ function Encargos() {
             <h1>Encargos</h1>
             <ul>
                 {encargos.map(encargo => (
-                    <li key={encargo.id}>
-                        <strong>Nombre:</strong> {encargo.user_name} <br />
-                        <strong>Apellido:</strong> {encargo.user_surname} <br />
-                        <strong>Email:</strong> {encargo.user_email} <br />
-                        <strong>Link del Producto:</strong> <a target='_blank' href={encargo.product_link} > {encargo.product_link} </a>
-                    </li>
+                    <Encargo user_name={encargo.user_name} user_surname={encargo.user_surname} user_email={encargo.user_email} product_link={encargo.product_link}/>
                 ))}
             </ul>
         </div>

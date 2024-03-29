@@ -13,31 +13,19 @@ function App() {
         window.history.pushState({}, '', path);
     };
 
-    let content = null;
-
-    if (currentPath === '/' || currentPath === '/TioFelipe') {
-        content = <Home />;
-    } else if (currentPath === '/login') {
-        content = <Login />;
-    } else if (currentPath === '/register') {
-        content = <Registro />;
-    } else if (currentPath === '/pedido') {
-        content = <Pedidos />;
-    } else if (currentPath === '/encargos') {
-        content = <Encargos />;
-    } else {
-        // Handle other paths or show a 404 page
-        content = <div>Page Not Found</div>;
-    }
-
     return (
         <>
-            <button onClick={() => handleNavigation('/')}>Home</button>
-            <button onClick={() => handleNavigation('/login')}>Login</button>
-            <button onClick={() => handleNavigation('/register')}>Registro</button>
-            <button onClick={() => handleNavigation('/pedido')}>Hace tu pedido</button>
-            <button onClick={() => handleNavigation('/encargos')}>Encargos</button>
-            {content}
+            <button onClick={() => handleNavigation('/TioFelipe')}>Home</button>
+            <button onClick={() => handleNavigation('/TioFelipe/login')}>Login</button>
+            <button onClick={() => handleNavigation('/TioFelipe/register')}>Registro</button>
+            <button onClick={() => handleNavigation('/TioFelipe/pedido')}>Hacer pedido</button>
+            <button onClick={() => handleNavigation('/TioFelipe/encargos')}>Encargos</button>
+
+            {currentPath === '/TioFelipe' && <Home/>}
+            {currentPath === '/TioFelipe/login' && <Login/>}
+            {currentPath === '/TioFelipe/register' && <Registro/>}
+            {currentPath === '/TioFelipe/pedido' && <Pedidos/>}
+            {currentPath === '/TioFelipe/encargos' && <Encargos/>}
         </>
     );
 }
